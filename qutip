@@ -1,0 +1,23 @@
+import numpy as np
+import qutip as qt
+
+# Definición de la Hamiltoniana del sistema
+H = qt.Qobj(np.diag([0, 1, 2, 3]))
+
+# Estado inicial
+psi0 = qt.Qobj([1, 0, 0, 0])
+
+# Tiempo final de simulación
+tf = 10
+
+# Número de pasos de simulación
+steps = 100
+
+# Lista de tiempos
+tlist = np.linspace(0, tf, steps)
+
+# Resolución de la ecuación maestra
+output = qt.mesolve(H, psi0, tlist)
+
+# Gráfico de la evolución temporal del estado del sistema
+qt.plot_expectation_values(output.expect, tlist)
